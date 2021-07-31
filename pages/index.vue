@@ -1,7 +1,12 @@
 <template>
-  <div />
+  <TheEditor />
 </template>
 
 <script>
-export default {}
+import { TheEditor } from '@/components/Layouts/TheEditor'
+export default {
+  components: {
+    TheEditor,
+  },
+}
 </script>
