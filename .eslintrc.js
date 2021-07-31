@@ -18,5 +18,15 @@ module.exports = {
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
     'operator-linebreak': ['error', 'before'],
+    'vue/max-attributes-per-line': ['error', {
+      singleline: {
+        max: 1,
+        allowFirstLine: true,
+      },
+      multiline: {
+        max: 1,
+        allowFirstLine: false,
+      },
+    }],
   },
 }
