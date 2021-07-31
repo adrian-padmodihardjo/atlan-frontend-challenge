@@ -22,5 +22,14 @@ export default {
   components: false,
   buildModules: [
     '@nuxtjs/eslint-module'
-  ]
+  ],
+  build: {
+    extend (config) {
+      const csvLoaderRule = {
+        test: /\.csv$/,
+        loader: './webpacks/csv-to-json.loader.js'
+      }
+      config.module.rules.unshift(csvLoaderRule)
+    }
+  }
 }
