@@ -5,7 +5,7 @@ const { parse } = require('../../webpacks/csv-to-json.parser')
 function prepareTest (csvFilenameToTest) {
   const filePath = path.join(process.cwd(), `/mocks/${csvFilenameToTest}`)
   const fileContent = fs.readFileSync(filePath, {
-    encoding: 'utf-8'
+    encoding: 'utf-8',
   })
 
   const parsed = parse(fileContent)
@@ -15,7 +15,7 @@ function prepareTest (csvFilenameToTest) {
   return {
     parsed,
     headers,
-    rows
+    rows,
   }
 }
 
@@ -29,7 +29,7 @@ describe('csv to json parser', () => {
       const {
         parsed: jsonArray,
         headers,
-        rows
+        rows,
       } = prepareTest(name)
 
       for (const obj of jsonArray) {

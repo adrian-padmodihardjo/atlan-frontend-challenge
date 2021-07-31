@@ -4,11 +4,11 @@ function parse (inputString) {
   const { data } = Papa.parse(inputString, {
     encoding: 'utf-8',
     delimiter: ',',
-    header: true
+    header: true,
   })
   return data
 }
 
 module.exports = {
-  parse
+  parse,
 }
