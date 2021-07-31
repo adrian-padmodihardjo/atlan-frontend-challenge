@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { parse } = require('../../webpacks/csv-to-json.parser')
+const { parse, parseHeaders } = require('../../webpacks/csv-to-json.parser')
 
 function prepareTest (csvFilenameToTest) {
   const filePath = path.join(process.cwd(), `/mocks/${csvFilenameToTest}`)
@@ -13,6 +13,7 @@ function prepareTest (csvFilenameToTest) {
   const headers = rows.shift().split(',') || []
 
   return {
+    fileContent,
     parsed,
     headers,
     rows,
@@ -25,6 +26,16 @@ describe('csv to json parser', () => {
     return path.replace('./', '')
   })
   filenames.forEach((name) => {
+    test(`it correctly parse headers of ${name} data to JSON`, () => {
+      const {
+        fileContent,
+        headers: expectedHeaders,
+      } = prepareTest(name)
+
+      const actualHeaders = parseHeaders(fileContent)
+      expect(actualHeaders).toEqual(expectedHeaders)
+    })
+
     test(`it correctly parse ${name} data to JSON`, () => {
       const {
         parsed: jsonArray,

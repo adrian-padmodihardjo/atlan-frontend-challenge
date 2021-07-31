@@ -28,7 +28,15 @@ export default {
     extend (config) {
       const csvLoaderRule = {
         test: /\.csv$/,
-        loader: './webpacks/csv-to-json.loader.js',
+        oneOf: [
+          {
+            resourceQuery: /headers/,
+            loader: './webpacks/csv-header-to-json.loader.js',
+          },
+          {
+            loader: './webpacks/csv-to-json.loader.js',
+          },
+        ],
       }
       config.module.rules.unshift(csvLoaderRule)
     },
