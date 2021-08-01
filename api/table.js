@@ -10,12 +10,13 @@ export function getTableHeaders (tableName) {
   })
 }
 
-export function getTableData (tableName) {
+export function getTableData (tableName, params) {
   return request.call(this, {
     method: 'get',
     url: `/feature/${tableName}`,
     params: {
       table: tableName,
+      ...params,
     },
   })
 }
