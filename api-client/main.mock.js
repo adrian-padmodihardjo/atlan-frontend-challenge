@@ -46,9 +46,9 @@ async function handleGetTableData (config) {
   const rows = await import(`@/mocks/${tableName}.csv`)
     .then(m => m.default || m)
 
+  const start = (page - 1) * limit
+  const end = (page * limit) - 1
   const data = rows.filter((_, index) => {
-    const start = (page - 1) * limit
-    const end = (page * limit) - 1
     return start <= index && index <= end
   })
   const meta = createPaginationMeta(page, limit, rows.length)
