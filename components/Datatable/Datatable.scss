@@ -5,35 +5,49 @@ $--border-color: rgba(255, 255, 255, 0.05);
   height: 100%;
   overflow: auto;
   font-size: 0.875rem;
-  background-color: #27282b;
+
+  padding-bottom: 64px;
 }
 
 .dt {
   width: 100%;
-  background-color: #202126;
+  border-bottom: 1px solid rgb(31, 32, 37);
 
   &__td,
   &__th {
     margin: 0;
     padding: 0.5em 1em;
-    border-right: 1px solid $--border-color;
-    border-bottom: 1px solid $--border-color;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
   }
 
   &__thead {
     position: sticky;
     top: 0;
-    background-color: #202126;
+    background-color: rgb(31, 32, 37);
     z-index: 1;
   }
 
   &__thead & {
     &__th {
       color: rgba(255, 255, 255, 0.8);
+      border-color: rgb(40, 42, 49);
     }
   }
 
-  &__tbody &__td {
-    color: rgba(255, 255, 255, 0.7);
+  &__tbody & {
+    &__tr {
+      &:nth-child(odd) {
+        background-color: rgb(40, 42, 49);
+      }
+      &:nth-child(even) {
+        background-color: rgb(36, 38, 44);
+      }
+    }
+    
+    &__td {
+      color: rgba(255, 255, 255, 0.7);
+      border-color: rgb(36, 38, 44);
+    }
   }
 }
