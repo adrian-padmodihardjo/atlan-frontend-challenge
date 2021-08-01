@@ -11,6 +11,21 @@ import MockAdapter from 'axios-mock-adapter'
  */
 
 /**
+ * Mock pagination metadata
+ * @param {number} page
+ * @param {number} limit
+ * @param {number} totalItems
+ */
+function createPaginationMeta (page, limit, totalItems) {
+  return {
+    page,
+    limit,
+    totalItems,
+    totalPages: Math.ceil(totalItems / limit),
+  }
+}
+
+/**
  * Handle GET request to /table-headers?table=
  * @param {TableName} tableName
  */
@@ -36,9 +51,13 @@ async function handleGetTableData (config) {
     const end = (page * limit) - 1
     return start <= index && index <= end
   })
+  const meta = createPaginationMeta(page, limit, rows.length)
   return [
     200,
-    data,
+    {
+      data,
+      meta,
+    },
   ]
 }
 
