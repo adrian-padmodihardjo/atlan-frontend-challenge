@@ -1,0 +1,100 @@
+@use "sass:math";
+@use "@/assets/stylesheet/breakpoints" as B;
+
+$--flex-gap-x: 2rem;
+$--flex-gap-y: 1rem;
+
+.dt-pagination {
+  width: 100%;
+  font-size: 0.875rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: none;
+  border-left: none;
+
+  background-color: rgb(36, 38, 44);
+
+  &__per-page-selector,
+  &__page-selector {
+    padding: 0.5rem 1rem;
+  }
+
+  &__per-page-selector {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__page-selector {
+    &__info {
+      margin: 0;
+      margin-bottom: 1em;
+      opacity: 0.5;
+    }
+  }
+
+  &__select {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    &__label {
+      display: inline-block;
+      flex: 1 1 auto;
+
+      &::after {
+        content: ':';
+        display: none;
+      }
+    }
+
+    select {
+      flex: 0 0 auto;
+      overflow: hidden;
+      display: inline-block;
+      width: 72px;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      border: none;
+      background-color: #27282b;
+  
+      option {
+        background-color: inherit;
+      }
+  
+      &:hover,
+      &:focus,
+      &:active {
+        outline: none;
+      }
+    }
+  }
+}
+
+@include B.md () {
+  .dt-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+    &__per-page-selector {
+      order: 2;
+      border-bottom: none;
+    }
+
+    &__page-selector {
+      order: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      &__info {
+        margin-right: 4em;
+        margin-bottom: 0;
+      }
+    }
+
+    &__select__label::after {
+      display: inline-block;
+    }
+  }
+}
