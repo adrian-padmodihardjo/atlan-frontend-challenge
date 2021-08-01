@@ -1,0 +1,39 @@
+$--border-color: rgba(255, 255, 255, 0.05);
+
+.dt-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  font-size: 0.875rem;
+  background-color: #27282b;
+}
+
+.dt {
+  width: 100%;
+  background-color: #202126;
+
+  &__td,
+  &__th {
+    margin: 0;
+    padding: 0.5em 1em;
+    border-right: 1px solid $--border-color;
+    border-bottom: 1px solid $--border-color;
+  }
+
+  &__thead {
+    position: sticky;
+    top: 0;
+    background-color: #202126;
+    z-index: 1;
+  }
+
+  &__thead & {
+    &__th {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  &__tbody &__td {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
