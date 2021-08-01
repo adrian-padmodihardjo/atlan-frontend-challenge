@@ -1,4 +1,9 @@
-# atlan-frontend-challenge
+# Atlan Senior Developer Frontend Challenge
+
+## App
+This app is developed incrementally. Each iteration should have a deployed build on Netlify. The most recent build can be accessed on this link.
+
+[https://atlan-adrian-frontend-challenge.netlify.app/](https://atlan-adrian-frontend-challenge.netlify.app/)
 
 ## Build Setup
 
@@ -17,53 +22,30 @@ $ yarn start
 $ yarn generate
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
-## Special Directories
+## UI Components
+Each components in each directory should at least consists of these files:
+- `index.js`
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+  This serves as the entrypoint for each component. Only named export is exposed to enforce component naming on import.
 
-### `assets`
+- `\<name>.vue`
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+  This consists only of the template and script block.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+- `\<name>.scss`
 
-### `components`
+  All style definitions goes here.
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+## Mock Data
+As mentioned within the challenge description, the data used for mocks in this app comes from this [link](https://github.com/graphql-compose/graphql-compose-examples/tree/master/examples/northwind/data/csv). Any CSV that contains binary data is filtered out.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+CSV is then viewed and treated as table, as in RDBMS table.
 
-### `layouts`
+### CSV to JSON
+Instead of converting CSV to JSON manually, this app utilize webpack loader to convert CSV to JSON at build time.
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
+### Unit Test (Jest)
+Mock data fetching is simulated as network request, instead of requiring them directly. This is meant to anticipate future use case, in which an actual network request might be required.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+Unit test is then written to test that each request correctly returns the desired results.
