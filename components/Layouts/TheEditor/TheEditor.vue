@@ -1,10 +1,12 @@
 <template>
   <section class="the-editor">
-    <MyAceEditor class="the-editor__ace" />
-    <QueryResultTable
-      class="the-editor__query-result-table"
-      :table-name="tableName"
-    />
+    <client-only>
+      <MyAceEditor class="the-editor__ace" />
+      <QueryResultTable
+        class="the-editor__query-result-table"
+        :table-name="tableName"
+      />
+    </client-only>
   </section>
 </template>
 
