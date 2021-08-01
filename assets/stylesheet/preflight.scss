@@ -6,9 +6,16 @@ body {
   padding: 0;
 }
 
+html {
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  color: whitesmoke;
+}
+
 body * {
   box-sizing: border-box;
   color: inherit;
   font-family: inherit;
+  font-size: inherit;
   line-height: 1.5;
 }
