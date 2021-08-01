@@ -5,6 +5,9 @@
         <thead class="dt__thead">
           <slot name="thead">
             <tr class="dt__tr">
+              <th class="dt__th">
+                #
+              </th>
               <th
                 v-for="(header, headerIndex) in headers"
                 :key="headerIndex"
@@ -31,6 +34,9 @@
                 name="row"
                 v-bind="{ row, rowIndex }"
               >
+                <td class="dt__td">
+                  {{ startIndex + rowIndex }}
+                </td>
                 <td
                   v-for="(header, headerIndex) in headers"
                   :key="headerIndex"
@@ -40,7 +46,9 @@
                     name="cell"
                     v-bind="{ row, rowIndex, header, headerIndex }"
                   >
-                    {{ getCellContent({ row, rowIndex, header, headerIndex }) }}
+                    <slot :name="`cell-${getHeaderKey({ header, headerIndex })}`">
+                      {{ getCellContent({ row, rowIndex, header, headerIndex }) }}
+                    </slot>
                   </slot>
                 </td>
               </slot>
@@ -72,6 +80,10 @@ export default {
     rows: {
       type: Array,
       default: () => [],
+    },
+    startIndex: {
+      type: Number,
+      default: 1,
     },
   },
   methods: {
