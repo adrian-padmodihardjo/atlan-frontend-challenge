@@ -1,5 +1,5 @@
+import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-
 /**
  * Refer to available CSV file at '@/mocks/*.csv'
  * @typedef {string} TableName
@@ -24,13 +24,28 @@ async function handleGetTableHeaders (config) {
   ]
 }
 
-/**
- *
- * @param {MockAdapter} mockAdapter
- * @param {APIEndpoint} endpoint
- */
-export function setupMockAdapter (mockAdapter) {
-  if (mockAdapter instanceof MockAdapter) {
-    mockAdapter.onGet('/table-headers').reply(handleGetTableHeaders)
-  }
+async function handleGetTableData (config) {
+  const { page = 1, limit = 10 } = config.params
+  const paths = config.url.split('/')
+  const tableName = paths[paths.length - 1]
+  const rows = await import(`@/mocks/${tableName}.csv`)
+    .then(m => m.default || m)
+
+  const data = rows.filter((_, index) => {
+    const start = (page - 1) * limit
+    const end = (page * limit) - 1
+    return start <= index && index <= end
+  })
+  return [
+    200,
+    data,
+  ]
+}
+
+const mockApiClient = new MockAdapter(axios.create({}))
+mockApiClient.onGet('/table-headers').reply(handleGetTableHeaders)
+mockApiClient.onGet(/\/feature\/.*/).reply(handleGetTableData)
+
+export {
+  mockApiClient,
 }
