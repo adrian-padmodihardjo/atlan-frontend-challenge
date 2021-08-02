@@ -1,0 +1,58 @@
+.tab-layout-item {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+  background-color: rgba(255, 255, 255, 0.025);
+  border: 1px solid transparent;
+  border-left-color: rgba(255, 255, 255, 0.1);
+
+  &__label {
+    opacity: 0.5;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  &__btn-del {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1em;
+    padding: 4px;
+    border-radius: 100%;
+
+    svg {
+      visibility: hidden;
+      width: 16px;
+      height: 16px;
+      fill: white;
+      transform: rotate(45deg);
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &:hover,
+  &--active {
+    svg {
+      visibility: visible;
+    }
+  }
+
+  &--active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgb(28, 73, 133);
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+  }
+  & + &--active {
+    border-left-color: rgb(28, 73, 133);
+  }
+
+  &--active &__label {
+    opacity: 1;
+  }
+}

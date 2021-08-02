@@ -1,0 +1,37 @@
+.tab-layout {
+  position: relative;
+  background-color: #282a31;
+  font-size: 0.875rem;
+  user-select: none;
+  display: flex;
+  flex-flow: column nowrap;
+
+  &__track {
+    flex: none;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  &__ol {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__tab-content-wrapper {
+    flex: 1 1 0%;
+  }
+
+  &__tab-content {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+}
