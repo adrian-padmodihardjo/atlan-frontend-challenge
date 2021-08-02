@@ -23,6 +23,12 @@ $--flex-gap-y: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  &__per-page-selector {
+    select {
+      width: 170px !important;
+    }
+  }
+
   &__page-selector {
     &__info {
       margin: 0;
@@ -42,7 +48,7 @@ $--flex-gap-y: 1rem;
       flex: 1 1 auto;
 
       &::after {
-        content: ':';
+        content: ":";
         display: none;
       }
     }
@@ -52,15 +58,17 @@ $--flex-gap-y: 1rem;
       overflow: hidden;
       display: inline-block;
       width: 72px;
-      padding: 0.5em 1em;
-      border-radius: 4px;
+      margin: 0 0.5em;
+      padding: 0.5em 0;
+      border-radius: none;
       border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       background-color: #27282b;
-  
+
       option {
         background-color: inherit;
       }
-  
+
       &:hover,
       &:focus,
       &:active {
@@ -68,9 +76,30 @@ $--flex-gap-y: 1rem;
       }
     }
   }
+
+  &__btn-skip-prev,
+  &__btn-prev,
+  &__btn-next,
+  &__btn-skip-next {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    fill: currentColor;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    transition-property: opacity;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__btn-skip-prev {
+    margin-left: 1em;
+  }
 }
 
-@include B.md () {
+@include B.md() {
   .dt-pagination {
     display: flex;
     justify-content: space-between;
@@ -79,6 +108,10 @@ $--flex-gap-y: 1rem;
     &__per-page-selector {
       order: 2;
       border-bottom: none;
+
+      select {
+        width: 72px !important;
+      }
     }
 
     &__page-selector {

@@ -23,6 +23,7 @@ export default {
   components: false,
   buildModules: [
     '@nuxtjs/eslint-module',
+    'svg-to-vue-component/nuxt',
   ],
   build: {
     extend (config) {
