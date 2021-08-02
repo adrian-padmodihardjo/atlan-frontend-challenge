@@ -19,6 +19,7 @@ $--border-color: rgba(255, 255, 255, 0.05);
     padding: 0.5em 1em;
     border-right: 1px solid;
     border-bottom: 1px solid;
+    white-space: nowrap;
   }
 
   &__thead {
