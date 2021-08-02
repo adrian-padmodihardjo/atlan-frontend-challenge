@@ -35,6 +35,14 @@
         <span class="dt-pagination__select__label">
           Page
         </span>
+        <IconSkipPrevious
+          class="dt-pagination__btn-skip-prev"
+          @click="onGoToFirstPage"
+        />
+        <IconChevronLeft
+          class="dt-pagination__btn-prev"
+          @click="onGoToPreviousPage"
+        />
         <select
           :value="page"
           @change="onPageChanged"
@@ -46,13 +54,32 @@
             {{ i }}
           </option>
         </select>
+        <IconChevronRight
+          class="dt-pagination__btn-next"
+          @click="onGoToNextPage"
+        />
+        <IconSkipNext
+          class="dt-pagination__btn-skip-next"
+          @click="onGoToLastPage"
+        />
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import IconSkipPrevious from '@/assets/icon/bx-skip-previous.svg?svg-to-vue'
+import IconChevronLeft from '@/assets/icon/bx-chevron-left.svg?svg-to-vue'
+import IconChevronRight from '@/assets/icon/bx-chevron-right.svg?svg-to-vue'
+import IconSkipNext from '@/assets/icon/bx-skip-next.svg?svg-to-vue'
+
 export default {
+  components: {
+    IconSkipPrevious,
+    IconChevronLeft,
+    IconChevronRight,
+    IconSkipNext,
+  },
   model: {
     prop: 'page',
     event: 'change',
@@ -114,15 +141,37 @@ export default {
         { immediate: true, deep: true },
       )
     },
+    onGoToFirstPage () {
+      this.mPage = 1
+      this.emitPageChanged()
+    },
+    onGoToPreviousPage () {
+      this.mPage -= 1
+      this.emitPageChanged()
+    },
+    onGoToNextPage () {
+      this.mPage += 1
+      this.emitPageChanged()
+    },
+    onGoToLastPage () {
+      this.mPage = this.totalPages
+      this.emitPageChanged()
+    },
     onPageChanged (e) {
       const val = +e.target.value
       this.mPage = val
-      this.$emit('change:page', val)
+      this.emitPageChanged()
     },
     onPerPageChanged (e) {
       const val = +e.target.value
       this.mPerPage = val
-      this.$emit('change:per-page', val)
+      this.emitPerPageChanged()
+    },
+    emitPageChanged () {
+      this.$emit('change:page', this.mPage)
+    },
+    emitPerPageChanged () {
+      this.$emit('change:per-page', this.mPerPage)
     },
   },
 }
