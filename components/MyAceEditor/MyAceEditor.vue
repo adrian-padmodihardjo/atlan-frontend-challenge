@@ -1,6 +1,9 @@
 <template>
-  <div class="my-ace-editor">
-    test
+  <div class="my-ace-editor-wrapper">
+    <div
+      ref="editorContainer"
+      class="my-ace-editor"
+    />
   </div>
 </template>
 
@@ -23,7 +26,7 @@ export default {
         return
       }
       if (!this.ace) {
-        const instance = window.ace.edit(this.$el)
+        const instance = window.ace.edit(this.$refs.editorContainer)
         instance.setTheme('ace/theme/dracula')
         instance.session.setMode('ace/mode/sql')
         instance.setFontSize('inherit')
@@ -39,3 +42,7 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@use "./MyAceEditor.scss";
+</style>

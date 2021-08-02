@@ -1,5 +1,10 @@
 <template>
-  <nav class="dt-pagination">
+  <nav
+    :class="{
+      'dt-pagination': true,
+      'dt-pagination--disabled': isDisabled,
+    }"
+  >
     <div class="dt-pagination__per-page-selector">
       <div class="dt-pagination__select">
         <span class="dt-pagination__select__label">
@@ -123,6 +128,9 @@ export default {
     },
     endIndex () {
       return this.itemsCount + this.startIndex - 1
+    },
+    isDisabled () {
+      return this.itemsCount === 0
     },
   },
   created () {

@@ -97,6 +97,15 @@ $--flex-gap-y: 1rem;
   &__btn-skip-prev {
     margin-left: 1em;
   }
+
+  &--disabled {
+    cursor: not-allowed;
+    color: rgba(255, 255, 255, 0.25) !important;
+
+    * {
+      pointer-events: none;
+    }
+  }
 }
 
 @include B.md() {
