@@ -1,0 +1,55 @@
+.q-console-list-item {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+  border: 1px solid transparent;
+
+  &__label {
+    opacity: 0.5;
+  }
+
+  &__btn-del {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    border-radius: 100%;
+
+    svg {
+      visibility: hidden;
+      width: 16px;
+      height: 16px;
+      fill: white;
+      transform: rotate(45deg);
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  &--active {
+    background-color: rgba(255, 255, 255, 0.025);
+    border-color: rgb(28, 73, 133);
+  }
+
+  &:hover,
+  &--active {
+    svg {
+      visibility: visible;
+    }
+  }
+
+  &--active & {
+    &__label {
+      opacity: 1;
+    }
+  }
+}
