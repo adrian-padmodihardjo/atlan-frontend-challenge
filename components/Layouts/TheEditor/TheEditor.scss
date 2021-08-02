@@ -1,21 +1,39 @@
+@use "@/assets/stylesheet/breakpoints" as B;
+
 .the-editor {
   overflow: hidden;
   display: grid;
   width: 100vw;
   height: 100vh;
-  grid-template-areas:
-    "editor"
-    "table-of-result";
+  grid-template-areas: "tabs";
   grid-template-columns: 1fr;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 1fr;
 
-  &__ace {
-    grid-area: editor;
+  &__sidebar {
+    display: none;
+    grid-area: sidebar;
+    overflow: auto;
+  }
+
+  &__tabs {
+    grid-area: tabs;
     overflow: hidden;
   }
 
+  &__ace,
   &__query-result-table {
-    grid-area: table-of-result;
-    overflow: hidden;
+    height: 50%;
+    flex: 0 0 auto;
+  }
+}
+
+@include B.xl () {
+  .the-editor {
+    grid-template-areas: "sidebar tabs";
+    grid-template-columns: 320px 1fr;
+
+    &__sidebar {
+      display: block;
+    }
   }
 }
